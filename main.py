@@ -1,12 +1,19 @@
 from flask import Flask, jsonify
+import requests
 import os
 
 app = Flask(__name__)
 
+HTTP_TOKEN = open("HTTP_TOKEN.txt", "r").read() #Токен бота с файла
 
 @app.route('/')
 def index():
-    return jsonify({"Choo Choo": "Welcome to your Flask app 🚅"})
+    return jsonify({"status":200})
+
+@app.route('/api/getMe')
+def apiGetMe():
+    response = requests.get(f"https://api.telegram.org/bot{HTTP_TOKEN}/getMe")
+    return response.json()
 
 
 if __name__ == '__main__':
