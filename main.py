@@ -4,8 +4,6 @@ import os
 
 app = Flask(__name__)
 
-HTTP_TOKEN = open("HTTP_TOKEN.txt", "r").read() #Токен бота с файла
-
 @app.route('/')
 def index():
     return jsonify({"status":200})
